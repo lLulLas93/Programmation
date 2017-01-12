@@ -1,0 +1,42 @@
+<body>
+    </br>
+    </br>
+    </br>
+    <?php
+        function checkNumber($i)
+        {
+            if($i > 1) return "ème";
+            return "er";
+        }
+
+        $id = $_SESSION['id'];
+        $sql = $pdo->prepare("SELECT * FROM reunions WHERE Instigateur = :id ");
+        $sql->execute(array('id' => $id));
+
+        echo'<form action="index.php?page=addMembrePrenom" class="STYLE-NAME" method="POST">
+            <h1>Entrez le pseudo de vos participants</h1>';
+            echo'</br>';
+                    echo'<span>Choisissez votre réunion : </span>';
+                    echo'<select name="reunion">';
+            
+                    while ($donnees = $sql->fetch()) {   
+                        echo'<option value='.$donnees["ID_reunion"].'>'.$donnees['Ordre'].'</option>';    
+                    }
+                    echo'</select></br></br></br>';
+
+      for($i = 0; $i < $_POST['participant']; $i++)
+      {
+      echo'<span> '.($i +1).checkNumber($i + 1).' membre</span></br>';
+      echo'<select name="membre['.$i.']">';
+       $sql = $pdo->query("SELECT * FROM utilisateurs");
+       while($query = $sql->fetch())
+       {
+             echo'<option value='.$query["ID_ut"].'>'.$query["Nom_ut"].' '.$query["Prenom"].'</option>';   
+       }
+       echo '</select></br></br>';
+        }
+        echo '<button type="submit">Inviter à la réunion</button></form>';
+        ?>
+
+        
+</body>

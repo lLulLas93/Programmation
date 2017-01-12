@@ -1,0 +1,76 @@
+
+.headerContent{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background: black;
+}
+.img{
+    width: 15%;
+    margin-left: 40%;
+}
+.nav{
+    height: 40px;
+}
+.nav ul{
+    margin: 0px;
+    padding: 0px;
+}
+.nav ul li{
+    list-style: none;
+}
+.connexion{
+    display: block;
+}
+.nav ul li a {
+    text-decoration: none;
+    float: left;
+    display: block;
+    padding: 10px 20px;
+    color: black;
+    width: 60px;   
+}
+.nav ul li a:hover {
+    color: white;
+    width: 60px;
+}
+
+
+body{ 
+	background:#f8f8f8;
+	font:13px Trebuchet MS, Arial, Helvetica, Sans-Serif;
+	color:#333;
+	line-height:160%;
+	margin:0;
+	padding:0;
+	text-align:center;
+	}
+   
+#form1{
+ margin-top: 5%;
+ margin-left: 30%;
+ width: 35%;  
+}
+label{   
+ margin-left: 3em;
+ width: 250px;
+ display: block;
+ float: left;
+}
+.confirmation{
+ margin-left: 40%;
+ margin-top: 10%;
+ width:100px; 
+ height: 100px;  
+}
+.table{
+ margin-top: 5%;
+ margin-left: 25%;
+}
+.lien{
+ margin-top: 5%;
+ margin-right: 4%;
+}
+.refresh{
+    position: absolute;
+}

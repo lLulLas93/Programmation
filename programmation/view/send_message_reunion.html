@@ -1,0 +1,94 @@
+ <?php
+	echo"
+        <div class='col-md-6'>
+            <div class='msgN'>
+				<div class='STYLE-NAME'>
+                <form action='index.php?page=reunion_now&id_reu=$id_reu&a=".$_GET['a']."' method='POST' >
+                    <h1>Envoyez le Compte rendu du sujet
+        <span>S\'il vous plait, remplissez tous les champs.</span>
+    </h1>";
+
+        $id = $_SESSION['id'];
+		
+        $sql = $pdo->query("SELECT * FROM sujet WHERE ID_ut = $id and ID_reunion='$id_reu'");
+        $theme = $sql->fetchall();
+		$total = count($theme);
+		
+		if(isset($_GET['a']) && $_GET['a'] != 'fin'){
+					//echo 'DANS LA BOUCLE';
+			$a = $_GET['a'];	
+			$e = 0;			
+			$sujet = $theme[$a]['Sujet'];
+			$time = $theme[$a]['Temps_sujet'];
+			$id_sujet = $theme[$a]['ID_sujet'];	
+			$x = $a;
+
+		}else if(!isset($_GET['a'])){
+		
+			$id_sujet = $theme[$a]['ID_sujet'];
+			$a = $e = 0;	
+			//echo 'HORS DE LA BOUCLE';
+			$sujet = $theme[$a]['Sujet'];
+			$time = $theme[$a]['Temps_sujet'];
+			$x = $a;
+
+		}else if($_GET['a'] == 'fin'){
+
+				$id_sujet = 'fin';
+				$a = $total;
+				$sujet = 'FIN des Sujets';
+				$time = 'FIN des temps en ';
+				$x='fin_all';
+				
+				}
+	$reu_inst_ut = $pdo->query( "SELECT * FROM sujet where ID_reunion='$id_reu' and ID_ut = '$id'" );
+	$r_i_ut = $reu_inst_ut->fetchall();			
+	$toto = count($r_i_ut);
+	
+	for( $q=0;$q<$toto;$q++ ) {
+			
+		$ut = $r_i_ut[$q]['ID_ut'];
+		$personne = $pdo->query( "SELECT Nom_ut,Prenom FROM utilisateurs where ID_ut=$ut " );
+		$pers = $personne->fetch();
+			if($r_i_ut[$q]['Compte_rendu_s']){
+				echo "<h5> Nous avons comme sujet : \"".$r_i_ut[$q]['Sujet']."\"</br>
+				Temps Accordé à ce sujet : ".$r_i_ut[$q]['Temps_sujet']."minute\" </br>
+				 De : ".$pers['Nom_ut']."  ".$pers['Prenom']."</br>
+				 Et le Compte-rendu : ".$r_i_ut[$q]['Compte_rendu_s']." </h5></br>";
+			}else{
+				echo "<h5> Nous avons comme sujet : \"".$r_i_ut[$q]['Sujet']."\"</br>
+				Temps Accordé à ce sujet : ".$r_i_ut[$q]['Temps_sujet']."minute\" </br>
+				 De : ".$pers['Nom_ut']."  ".$pers['Prenom']."</br>
+				 Et le Compte-rendu : aucun </h5></br>";
+			}
+	}
+
+
+		do{
+			echo'<h4>Sujet: '.$sujet.'</br></h4>';
+			echo'<h4>Temp-sujet: '.$time.' minutes</h4>';
+			$a = $a+1;
+			$e = $a+2;
+		}while($a == $e);
+		
+			if($x >= $total){
+				$a ='fin';
+				echo"<META http-equiv='refresh' content='0;URL=index.php?page=reunion_now&id_reu=$id_reu&a=fin'>";
+			}else if($x < $total){
+				echo"<META http-equiv='refresh' content='$time;URL=index.php?page=reunion_now&id_reu=$id_reu&a=$a'>";
+			}
+     
+       
+       echo"
+        <textarea id='message' name='message' placeholder='Entre votre Compte-rendu du sujet'></textarea>
+
+        <input  type='submit' name='submit' class='button' value='Envoyer cette conclusion à votre sujet' />
+		        <input  type='hidden' name='id_sujet' value='$id_sujet' />
+		<button type='submit' name='particulier' class='button' ><a href=index.php?page=message>Message Particuliers</a></button></div> 
+
+                </form>
+              
+       </div>
+       </div>
+       </div>";
+   ?>

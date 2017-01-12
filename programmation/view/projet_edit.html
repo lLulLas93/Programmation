@@ -1,0 +1,63 @@
+<body>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</br>	
+<form enctype="multipart/form-data"  action = "index.php?page=projet_edit" class="STYLE-NAME" method = "POST">
+
+		<h1> Modification Projet </h1>		
+		<p>
+			<label for = "projet_nom">Entrer le nom de votre Projet : </label>
+			<input type ="text" name = "projet_nom" id = "projet_nom"  value="<?php echo $projet[0][2]?>"/>
+		</p>
+		
+		<p>
+			<label for = "langage">Entrer le(s) langage(s) : </label>
+<input type ="text" name = "langage" id = "langage" value="<?php echo $projet[0][4]?>"/>
+			
+		</p>
+		<p>
+			<label for = "participants">Entrer le nombres de participants : </label>
+			<input type ="number" name = "participants" value="<?php echo $projet[0][12]?>"/>
+			
+		</p>
+		
+		<p>
+			<label for = "difficultés">Entrer le niveau de difficultés : </label>
+			<input type ="range" id="myRange" onclick="rang()"  step="5" name = "difficultes" />
+			<span id = "aff_rang"><?php echo $projet[0][10]?></span>%
+
+		</p>
+<script>
+		
+function rang() {
+    var x = document.getElementById("myRange").value;
+    document.getElementById("aff_rang").innerHTML = x;
+}
+		</script>
+
+		<p>
+			<label   for = "d_d">Entrer la date de début : </label>
+			<input type ="date" name = "d_d" value="<?php echo $projet[0][6]?>" /> 
+			
+		</p>
+		<p>
+			<label for = "d_f">Entrer la date de fin : </label>
+			<input type ="date" name = "d_f" value="<?php echo $projet[0][7]?>"/>
+		</p>
+		<p>
+					<label for = "img">Entrer une image pour votre projet : </label>
+					<input type ="hidden" name = "MAX_FILE_SIZE" value="10000000"/>
+					<input type ="file" name = "image" />
+		
+		</p>
+		
+		<p>
+			<label for = "description">Entrer une description  votre projet : </label>
+			<textarea name = "description" rows="10" cols="50" /><?php echo $projet[0][5]?></textarea>
+			
+		</p>
+			<input type ="submit" value = "Envoyer"/>
+			<input type ="submit" onclick="imprimer()" value = "Imprimer"/>
+
+</body>
+

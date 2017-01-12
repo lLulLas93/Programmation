@@ -1,0 +1,104 @@
+<!-- NavBar-->
+
+<body>
+	<?php
+		$pseudo = $_SESSION['pseudo'];
+	
+		$id = $_SESSION['id'];
+		function countNbMessage($pdo, $id)
+		{
+			$count = $pdo->prepare("SELECT count(*) AS nb FROM messages WHERE statut = '0' AND id_destinataire = :id");
+			$count->execute(array("id" => $id));
+			$totalMess = $count->fetch();
+			return $totalMess['nb'];
+		}
+	?>
+		<nav class="navbar-default" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				
+				</button>
+
+						<ul class="nav navbar-nav">
+							<form action="index.php" class="navbar-form navbar-right" method="GET">
+								<input type='hidden' name='page' value="message" />
+								<button type="submit" class="btn btn-info">Notification <?php echo countNbMessage($pdo, $id);  ?></button>
+							</form>
+							
+							<li class="nav-item">
+								<div class='deco1'>
+									<form action="index.php" class="navbar-form navbar-right" method="GET">
+										<input type='hidden' name='page' value="accueilMembre" />
+										<button type="submit" class="btn btn-success">Acceuil</button>
+									</form>
+								</div>
+							</li>
+
+						</ul>
+				</div>
+				<?php
+				 $statut = $_SESSION['statut'];
+				  if ($statut == 'administrateur') {
+				        echo'   <ul class="nav navbar-nav">
+						<li class="nav-item">
+							<div class="deco1">
+								<form action="index.php" class="navbar-form navbar-right" method="GET">
+                                    <input type="hidden"" name="page" value="tableAdmin" />
+									<button type="submit" class="btn btn-success">Back Office</button>
+								</form>
+							</div>
+						</li>
+
+					</ul>';		  		
+				  }
+				?>
+				
+				<ul class="nav navbar-nav ">
+				<li class="nav-item ">
+				<a href="# "><div id="afficherheure"></div></a>
+				</ul>
+				</li>
+				
+
+					<div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+						<div class='vide' >
+					</div>
+
+					<ul class="nav navbar-nav ">
+						<li class="nav-item ">
+							<a href="# ">Reunion</a>
+							<ul class="nav sub-nav ">
+								<li class="sub-nav-item "><a href="index.php?page=reunion_add ">Créer</a></li>
+								<li class="sub-nav-item "><a href="index.php?page=reunion_edit ">Modifier</a></li>
+								<li class="sub-nav-item "><a href="index.php?page=reunion_view ">Affichage</a></li>
+							</ul>	
+				
+						<li class="nav-item ">
+							<a href="# ">Projet</a>
+							<ul class="nav sub-nav ">
+								<li class="sub-nav-item "><a href="index.php?page=projet_add">Créer</a></li>
+								<li class="sub-nav-item "><a href="index.php?page=projet_edit">Modifier</a></li>
+								<li class="sub-nav-item "><a href="index.php?page=projet_view ">Affichage</a></li>
+							</ul>
+						</li>
+						
+						<li class="nav-item ">
+							<a href="# "><?php echo$_SESSION['Nom_ut'].'   '.$_SESSION['Nom_ut'];?></a>
+							<ul class="nav sub-nav ">
+								<li class="sub-nav-item "><li class="sub-nav-item "><a href="index.php?page=profil">Profil</a></li>
+								<li class="sub-nav-item "><a href="index.php?page=deconnexion">Deconnexion</a></li>
+							</ul>
+						</li>
+						
+					</div>
+
+				<script type="text/javascript">
+				setInterval(function(){
+					document.getElementById("afficherheure").innerHTML = new Date().toLocaleTimeString();
+				}, 1000);
+				</script>
+			</div>
+			
+		</nav>
+		</body>

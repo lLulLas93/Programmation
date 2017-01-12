@@ -1,0 +1,25 @@
+<?php 
+include('./view/head.html');
+include( './view/nav_bar_co.html');
+//var_dump ($data);
+?>
+<body>
+	</br></br></br>
+<form enctype="multipart/form-data"  action = "index.php?page=modif_reu" class="STYLE-NAME" method = "POST">
+		<h1> Modification reunion </h1>
+		 <SELECT name="reunions_mod" size="1">
+		<p>
+		<?php
+		$id =  $_SESSION['id'];
+     
+	   $req = $pdo->prepare("SELECT * FROM reunions WHERE Instigateur = :id");
+       $req->execute(array("id" => $id));
+        while($recup = $req->fetch()) {
+            echo'<option>'.$recup['Ordre'].'</option>';  
+        }
+        ?>
+		</SELECT>
+			<button>Valider</button>
+		</p>
+</form>
+</body>

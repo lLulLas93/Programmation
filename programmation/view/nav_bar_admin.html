@@ -1,0 +1,76 @@
+<!-- NavBar-->
+
+<body>
+	<?php
+                 $pseudo = $_SESSION['pseudo'];                 
+            ?>
+		<nav class="navbar-default" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+					<ul class="nav navbar-nav">
+						<li class="nav-item">
+							<div class='deco1'>
+								<form action="index.php" class="navbar-form navbar-right" method="GET">
+									<input type='hidden' name='page' value="message" />
+									<button type="submit" class="btn btn-info">Notification</button>
+								</form>
+							</div>
+						</li>
+
+					</ul>
+                    <ul class="nav navbar-nav">
+						<li class="nav-item">
+							<div class='deco1'>
+								<form action="index.php" class="navbar-form navbar-right" method="GET">
+                                    <input type='hidden' name='page' value="tableAdmin" />
+									<button type="submit" class="btn btn-success">Back Office</button>
+								</form>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+
+				<div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+					<div class='vide' ">
+					</div>
+
+					<ul class="nav navbar-nav ">
+						<li class="nav-item ">
+							<a href="# ">Reunion</a>
+							<ul class="nav sub-nav ">
+								<li class="sub-nav-item "><a href="index.php?page=reunion_add">Créer</a></li>
+								<li class="sub-nav-item "><a href="# ">ajouter une action </a></li>
+							</ul>
+						</li>
+						<div class='vide' ">
+					</div>
+					<li class="nav-item ">
+						<a href="# ">Projet</a>
+						<ul class="nav sub-nav ">
+							<li class="sub-nav-item "><a href="index.php?page=projet_add">Creer un projet</a></li>
+							<li class="sub-nav-item "><a href="index.php?page=projet_view ">Voir projet</a></li>
+						</ul>
+					</li>
+					<li class="nav-item ">
+						<form action="index.php" method="GET">
+							<input type='hidden' name='page' value="deconnexion" />
+							<div class='deco'>
+								<button type="submit" class="btn btn-warning">Déconnexion de votre session <?php echo $pseudo?></button>
+							</div>
+						</form>
+
+					</li>
+
+					</ul>
+				</div>
+
+			</div>
+		</nav>
+</body>

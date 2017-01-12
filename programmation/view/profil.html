@@ -1,0 +1,69 @@
+<body>
+    <?php
+        $mail = $_SESSION['mail'];
+        echo $_SESSION['mail'];
+        $prenom = $_SESSION['Prenom'];
+        $nom = $_SESSION['Nom_ut'];
+    ?>
+<div class="container">
+    <h2>Modification Profil</h2>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+        
+        
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+        <h3>Information personnelle</h3>
+        </br>
+        
+        <form class="form-horizontal" action="index.php?page=profil" method="POST">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Prenom:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="prenom" value="<?php echo $prenom; ?>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Nom:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="nom" value="<?php echo $nom; ?>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Mail:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="mail" value="<?php echo $mail; ?>">
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <label class="col-md-3 control-label">Mot de passe:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" name="mdp">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirmation mot de passe:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" name="confirmationMdp">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <button class="btn btn-primary">
+                  Modifier
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+</body>
